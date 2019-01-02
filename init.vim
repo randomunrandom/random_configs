@@ -1,7 +1,6 @@
 "===== vim-plug setup =====
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) " install vim-plug if it's not present
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -27,9 +26,9 @@ call plug#begin('~/.local/share/nvim/plugged')  " setup for vim-plug
     Plug 'cjrh/vim-conda'                       " conda support
     Plug 'scrooloose/nerdcommenter'             " coment lines
     Plug 'machakann/vim-highlightedyank'        " highlight yanked area
-    Plug 'neomake/neomake'
-    " Plug 'w0rp/ale'
-    Plug 'ggdroot/indentLine'                   " show indention
+    Plug 'neomake/neomake'                      " s
+    " Plug 'w0rp/ale'                           " s
+    Plug 'Yggdroot/indentLine'                  " show indention
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
     "Plug 'tpope/vim-sensible'
     "Plug 'dbakker/vim-lint'
@@ -78,6 +77,8 @@ set fileencodings=utf-8
 set fileformat=unix
 set ttimeout
 set ttimeoutlen=100
+set guicursor=n-v-c:block-Cursor-blinkoff0
+set guicursor+=i-ci:ver100-iCursor-blinkoff0
 
 "===== edit/open commands =====
 command EditNvim    :edit ~/.config/nvim/init.vim
@@ -141,7 +142,7 @@ map <C-f> :NERDTreeToggle<CR>
 
 "===== neomake setup =====
 call neomake#configure#automake('nrwi', 100)
-let g:neomake_open_list = 2
+" let g:neomake_open_list = 2
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
