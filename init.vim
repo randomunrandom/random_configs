@@ -28,7 +28,8 @@ call plug#begin('~/.local/share/nvim/plugged')  " setup for vim-plug
     Plug 'scrooloose/nerdcommenter'             " coment lines
     Plug 'machakann/vim-highlightedyank'        " highlight yanked area
     Plug 'neomake/neomake'
-    Plug 'w0rp/ale'
+    " Plug 'w0rp/ale'
+    Plug 'ggdroot/indentLine'                   " show indention
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
     "Plug 'tpope/vim-sensible'
     "Plug 'dbakker/vim-lint'
@@ -48,6 +49,7 @@ let g:airline_theme='iceberg'
 
 "===== prefered settings ====="
 set autoindent
+set autowrite
 set backup
 set backupdir=~/.backup
 set ignorecase
@@ -59,7 +61,6 @@ set nowrap
 set number
 set showmatch
 set incsearch
-set autowrite
 set whichwrap+=<,>,[,]
 set wildmenu
 set wildignore+=*.a,*.o,.git,*~,*.swp,*.tmp
@@ -123,6 +124,9 @@ function TrimSpaces() range
     let &hlsearch=oldhlsearch
 endfunction
 command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+"=====  =====
+let g:indentLine_char = '│'
 
 "===== NERDCommenter configs =====
 let g:NERDSpaceDelims = 1
