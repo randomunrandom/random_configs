@@ -6,6 +6,7 @@ from os import path, system
 from shutil import copy2
 from json import dump, load
 
+
 user_home_dir = path.expanduser("~")
 user_conf_dir = user_home_dir + '/.config'
 this_dir = path.dirname(path.realpath(__file__))

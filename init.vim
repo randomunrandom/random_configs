@@ -4,35 +4,38 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) " install vim-plug 
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.local/share/nvim/plugged')  " setup for vim-plug
+call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/vim-plug'                    " for documentation only
+    "=== quality of life(IDE) ===
     Plug 'vim-airline/vim-airline'              " improved statusline
-    "Plug 'vim-airline/vim-airline-themes'      "*themes for Airline
+    Plug 'vim-airline/vim-airline-themes'       " themes for Airline
     Plug 'scrooloose/nerdtree'                  " file system explorer
     Plug 'Xuyuanp/nerdtree-git-plugin'          " NERDTree plugin showing git status flags
     Plug 'mbbill/undotree'                      " undo history visualizer
     Plug 'mhinz/vim-signify'                    " show changes in files under VCS
     Plug 'gko/vim-coloresque'                   " color highliting: red
-    Plug 'edkolev/tmuxline.vim'                 " tmux support
-    " Plug 'vim-syntastic/syntastic'              " syntax checking
-    Plug 'editorconfig/editorconfig-vim'        " .editorconfig support
-    Plug 'tpope/vim-fugitive'                   " support for git
-    Plug 'joshdick/onedark.vim'                 " theme
-    Plug 'cocopon/iceberg.vim/'                 " theme
-    Plug 'chriskempson/base16-vim'              " theme
     Plug 'terryma/vim-multiple-cursors'         " multicursor suport
-    Plug 'rust-lang/rust.vim'                   " rust lang support
-    Plug 'kballard/vim-swift'                   " swift lang support
-    Plug 'cjrh/vim-conda'                       " conda support
-    Plug 'scrooloose/nerdcommenter'             " coment lines
+    Plug 'tpope/vim-surround'                   " change suroundings
     Plug 'machakann/vim-highlightedyank'        " highlight yanked area
-    Plug 'neomake/neomake'                      " s
-    " Plug 'w0rp/ale'                           " s
+    Plug 'scrooloose/nerdcommenter'             " coment lines
     Plug 'Yggdroot/indentLine'                  " show indention
+    " Plug 'joshdick/onedark.vim'                 " theme
+    " Plug 'cocopon/iceberg.vim/'                 " theme
+    Plug 'chriskempson/base16-vim'              " theme
+    "=== external tools suport ===
+    Plug 'edkolev/tmuxline.vim'                 " tmux support
+    Plug 'editorconfig/editorconfig-vim'        " .editorconfig support
+    Plug 'tpope/vim-fugitive'                   " git support
+    Plug 'cjrh/vim-conda'                       " conda support
+    "=== language suport ===
+    Plug 'neomake/neomake'                      " syntax checking
+    " Plug 'w0rp/ale'                           " syntax checking
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
+    Plug 'pangloss/vim-javascript'              " js    suport
+    Plug 'rust-lang/rust.vim'                   " rust  support
+    Plug 'kballard/vim-swift'                   " swift support
     "Plug 'tpope/vim-sensible'
     "Plug 'dbakker/vim-lint'
-    "Plug ''
 call plug#end()
 
 autocmd VimEnter * " install mising plugins
@@ -44,7 +47,7 @@ autocmd VimEnter * " install mising plugins
 set termguicolors
 let base16colorspace=256
 colorscheme base16-atelier-lakeside
-let g:airline_theme='iceberg'
+let g:airline_theme='base16_atelierlakeside'
 
 "===== prefered settings ====="
 set autoindent
@@ -68,7 +71,7 @@ set nojoinspaces
 set list listchars=trail:•,nbsp:≡,tab:│-,extends:»
 set textwidth=140
 set colorcolumn=+1
-set lazyredraw
+" set lazyredraw
 set showmode
 set cul
 set relativenumber
@@ -77,8 +80,6 @@ set fileencodings=utf-8
 set fileformat=unix
 set ttimeout
 set ttimeoutlen=100
-set guicursor=n-v-c:block-Cursor-blinkoff0
-set guicursor+=i-ci:ver100-iCursor-blinkoff0
 
 "===== edit/open commands =====
 command EditNvim    :edit ~/.config/nvim/init.vim
@@ -126,7 +127,7 @@ function TrimSpaces() range
 endfunction
 command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
-"=====  =====
+"===== IndentLine configs =====
 let g:indentLine_char = '│'
 
 "===== NERDCommenter configs =====
@@ -162,8 +163,8 @@ let g:tmuxline_preset = {
             \'c':'#W',
             \'win':['#I', '#W'],
             \'cwin':['#I', '#W'],
-            \'x':'%a',
-            \'y':['%b %d', '%R'],
+            \'x':'',
+            \'y':['%a %b %d', '%R'],
             \'z':'#H'
             \}
 
